@@ -1,0 +1,47 @@
+{
+    "Xiang":{
+        "id":"PlasmaSky",
+        "password": "246819",
+        "name":{
+            "firstName": "Xiang",
+            "midName": "",
+            "lastName":"Ji"
+        },
+        "contact":{
+            "tel": "0426994173",
+            "email": "shawn.xiangji@gmail.com"
+        },
+        "google_access":{},
+        "history":{
+            "browse":["mayerRM", "colesRM"],
+            "stars":{
+                "mayerRM":5
+            },
+            "order":{
+
+                "mayerRM":{
+                    "service":"cloths",
+                    "time":{
+                        "year":"2022",
+                        "month":"May",
+                        "date":"1",
+                        "hour":"14"
+                    },
+                    "rated":true
+                },
+
+                "colesCT":{
+                    "service":"vegetable",
+                    "time":{
+                        "year":"2022",
+                        "month":"May",
+                        "date":"1",
+                        "hour":"14"
+                    },
+                    "rated":false
+                }
+            }
+        }
+
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "mayerRM":{
+        "_id*":"mayerRM",
+        "password":"123455",
+        "name":"Mayer",
+        "address":{
+            "country": "Australia",
+            "state": "SA",
+            "city": "Adelaide",
+            "street": "Rundle Street",
+            "number": "22"
+            },
+        "tel": "1300112460",
+        "service":{
+            "shop":{
+                "mon": true,
+                "tue": false,
+                "wed": true
+            },
+            "eat":{
+                "mon": true,
+                "tue": true,
+                "wed": false
+            }
+        },
+
+        "stars":{
+            "user1": {
+                "rate": 5
+            },
+            "user2": {
+                "rate": 4
+            },
+            "user3": {
+                "rate": 2
+            }
+        }
+    }
+
+}

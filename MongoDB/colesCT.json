@@ -1,0 +1,35 @@
+{
+    "colesCT":{
+        "id":"colesCT",
+        "password":"242888",
+        "name":"Coles",
+        "address":{
+            "country": "Australia",
+            "state": "SA",
+            "city": "Adelaide",
+            "street": "Grote St",
+            "number": "21"
+            },
+        "tel": "0882316683",
+        "service":{
+            "shop":{
+                "mon": true,
+                "tue": false,
+                "wed": true
+            }
+        },
+
+        "stars":{
+            "user1": {
+                "rate": 5
+            },
+            "user2": {
+                "rate": 5
+            },
+            "user3": {
+                "rate": 2
+            }
+        }
+    }
+
+}
