@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bookinglet timetable for seller</title>
+    <style>
+        section {
+            display: flex;
+        }
+
+        .leftTable {
+            position: relative;
+        }
+
+        .timetable {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td {
+            border: 1px solid lightgray;
+            width: 100px;
+            height: 35px;
+        }
+
+        .rightTable {
+            width: 500px;
+            height: 600px;
+            margin: 30px;
+            padding: 20px;
+            border: 1px solid blue;
+            border-radius: 10px;
+            background-color: rgb(247, 239, 230);
+        }
+
+        .serviceTitle {
+            color: lightgray;
+            height: 25px;
+            width: 200px;
+        }
+
+        #startTime {
+            margin-left: 20px;
+        }
+
+        #hours {
+            margin-left: 20px;
+        }
+
+        .description {
+            margin-top: 5px;
+            color: lightgray;
+            height: 25px;
+            width: 400px;
+        }
+
+        .options {
+            color: lightgray;
+            height: 20px;
+            width: 100px;
+        }
+
+        .rightTable {
+            position: relative;
+            display: none;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .save {
+            width: 80px;
+            height: 30px;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        .serviceEvent {
+            position: absolute;
+            background-color: lightblue;
+            height: 35px;
+            width: 100px;
+            border: solid salmon 2px;
+            border-radius: 5px;
+        }
+
+        .calendar {
+            margin-top: 100px;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3 class='switchToCustomer' style="margin-left: 300px;">Please schedule your service calender</h3>
+    <div style="margin-left: 300px;">
+        <button>&lt;</button>
+        <span>May 2022</span>
+        <button>&gt;</button>
+    </div>
+    <br>
+    <section>
+        <div class="calendar">
+            <img src="./img/calender.png" alt="">
+        </div>
+        <div class="leftTable">
+        </div>
+        <div class="rightTable">
+            <h3>basic properties</h3>
+            <input class='serviceTitle' type="text" value=" service title">
+            <br>
+            <br>
+            <div>
+                <span>Start time</span>
+                <select class='startTime' id="startTime">
+                </select>
+            </div>
+            <br>
+            <div>
+                <span>Hours of service </span>
+                <select class='hoursOfService' id="hours">
+                    <option value=0.5>--0.5--</option>
+                    <option value=1 selected>-- 1 --</option>
+                    <option value=1.5>--1.5--</option>
+                    <option value=2>-- 2 --</option>
+                    <option value=2.5>--2.5--</option>
+                    <option value=3>-- 3 --</option>
+                    <option value=3.5>--3.5--</option>
+                    <option value=4>-- 4 --</option>
+
+                </select>
+            </div>
+            <br>
+            <div>
+                <span>service provider: </span>
+                <input class='serviceTitle' type="text" value=" staff name (optional)">
+            </div>
+            <br>
+            <div>
+                <span>description: </span>
+                <br>
+                <input class='description' type="text" value=" optional">
+            </div>
+            <h3>additional selections (optional)</h3>
+            <div class="attributes">
+                <span>Attribute 1: </span>
+                <input class='options' type="text" value=" Attribute1">
+                <br>
+                <div><span>options: </span>
+                    <input class='options' type="text" value=" option1">
+                    <input class='options' type="text" value=" option2">
+                    <button>more</button>
+                </div>
+            </div>
+            <br>
+            <div class="attributes">
+                <span>Attribute 2: </span>
+                <input class='options' type="text" value=" Attribute1">
+                <br>
+                <div><span>options: </span>
+                    <input class='options' type="text" value=" option1">
+                    <input class='options' type="text" value=" option2">
+                    <button>more</button>
+                </div>
+            </div>
+            <br>
+            <button>more</button>
+            <h3 style="color:grey">Multiple instances of this same service?</h3>
+            <button class="one">1</button>
+            <button class="minus">-</button>
+            <span class="serviceNumber">1</span>
+            <button class="plus">+</button>
+            <button class="infinite">∞</button>
+            <button class="close">close</button>
+            <button class="save">save</button>
+        </div>
+    </section>
+    <br>
+    <button style="margin-left: 200px; height: 30px;">Apply template for this month</button>
+    <button style="margin-left: 60px; height: 30px;">Apply template for this year</button>
+    <button style="margin-left: 60px; height: 30px;">Apply standard template</button>
+    <button style="margin-left: 60px; height: 30px;">Save as standard template</button>
+
+
+    <script>
+        let serviceData = {
+            date: new Date(),
+            serviceTitle: 'shoulder massage',
+            startTime: '15:30',
+            hoursOfService: '2.5',
+            serviceProvider: 'Tony',
+            description: 'Special service, professional technicians, widely praised.',
+            attributeName1: 'essential oil',
+            attributeOptions1: ['vegetable oil', 'olive oil', 'Indian god oil'],
+            attributeName2: 'additional service',
+            attributeOptions2: ['whole body', 'chat'],
+            serviceCounter: 1
+        }
+        console.log(serviceData)
+
+        const switchToCustomer = document.querySelector('.switchToCustomer')
+        //table
+        const leftTable = document.querySelector('.leftTable')
+        const headerTags = ['Sydney time', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        const table = document.createElement('table');
+        table.classList.add('timetable')
+        leftTable.appendChild(table);
+
+        const rightTable = document.querySelector('.rightTable')
+        const closeButton = document.querySelector('.close')
+        const saveButton = document.querySelector('.save')
+        let serviceEventName = document.querySelector('.serviceTitle')
+        let startTime = document.querySelector('.startTime')
+        let hoursOfService = document.querySelector('.hoursOfService')
+        let serviceNumber = document.querySelector('.serviceNumber')
+        const one = document.querySelector('.one')
+        const minus = document.querySelector('.minus')
+        const plus = document.querySelector('.plus')
+        const infinite = document.querySelector('.infinite')
+        let focus = null;
+        let serviceEventTagTop = 0;
+        let serviceEventTagLeft = 0;
+        let counter = 1;
+
+        //header
+        const header = document.createElement('tr');
+        table.appendChild(header);
+        for (let key in headerTags) {
+            let td = document.createElement('td');
+            header.appendChild(td);
+            td.innerHTML = headerTags[key];
+        }
+
+        //content
+        for (let i = 6; i < 23; i++) {
+            let row = document.createElement('tr');
+            table.appendChild(row);
+
+            let td = document.createElement('td');
+            row.appendChild(td);
+            td.innerHTML = i + ':00'
+
+            for (let j = 0; j < 7; j++) {
+                let td = document.createElement('td');
+                row.appendChild(td);
+                td.innerHTML = ''
+                td.addEventListener('click', (e) => {
+                    if (focus) { focus.style.background = '' };
+                    rightTable.style.display = 'block';
+                    focus = e.target;
+                    focus.style.background = 'lightgray'
+                    serviceEventTagTop = ((i - 5) * 38 + 2)
+                    serviceEventTagLeft = ((j + 1) * 103 + 2)
+
+                    startTime.innerHTML=`
+                    <option value=0>${i}:00</option>
+                    <option value=0.25>${i}:15</option>
+                    <option value=0.5>${i}:30</option>
+                    <option value=0.75>${i}:45</option>
+                    `
+                })
+            }
+        }
+
+        //right table
+        serviceEventName.addEventListener('focus', () => {
+            serviceEventName.value = ''
+        })
+
+        closeButton.addEventListener('click', () => {
+            rightTable.style.display = 'none';
+            focus.style.background = '';
+        })
+        saveButton.addEventListener('click', () => {
+            rightTable.style.display = 'none';
+            focus.style.background = '';
+
+            let serviceEvent = document.createElement('div');
+            serviceEvent.classList.add('serviceEvent');
+            leftTable.appendChild(serviceEvent);
+            serviceEvent.innerHTML = serviceEventName.value + ` 0/${counter}`;
+            serviceEvent.style.top = (serviceEventTagTop + startTime.value * 35) + 'px';
+            serviceEvent.style.left = serviceEventTagLeft + 'px';
+            serviceEvent.style.height = hoursOfService.value * (1 + 35) + 'px';
+        })
+
+        one.addEventListener('click', () => {
+            counter = 1;
+            serviceNumber.innerHTML = counter;
+        })
+        minus.addEventListener('click', () => {
+            if (counter > 1) {
+                counter--;
+                serviceNumber.innerHTML = counter;
+            }
+        })
+        plus.addEventListener('click', () => {
+            counter++;
+            serviceNumber.innerHTML = counter;
+        })
+        infinite.addEventListener('click', () => {
+            counter = '∞';
+            serviceNumber.innerHTML = counter;
+        })
+
+        switchToCustomer.addEventListener('click', () => {
+            location.href='./bookinglet_customer.html'
+        })
+
+    </script>
+</body>
+
+</html>
