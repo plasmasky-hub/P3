@@ -24,6 +24,7 @@ Yibo (devops)
 
 Features
 ----------
+![](https://github.com/plasmasky-hub/P3/blob/readme/README/Main_Page.png)
 The website will include two main pages, one for customers and another for store owners. Any guest could use basic searching feature and check store information, while further features will require guests to login as users. Users will be divided into two groups depending on their role: customers and store owners.
 
 The customer page includes personal profile and all features that available to guest. In profile customer could manage thier personal information, appointments, and liked store list.
@@ -31,8 +32,7 @@ The store owner page includes store information. Owners could check and edit sto
 
 Data structure
 ----------
-
-
+![](https://github.com/plasmasky-hub/P3/blob/readme/README/Database_diagram.png)
 Tech Stack
 ---------
 Front-end: 
