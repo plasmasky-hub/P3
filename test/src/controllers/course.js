@@ -2,7 +2,13 @@ const Course = require('../models/course');
 
 async function getAllCourses(req, res){
     // db.courses.find()
-    await Course.find().exec();
+    console.log('Finding courses...');
+    const courses = await Course.find().then(function (err, courses) {
+        if (err) return console.error(err);
+        console.log(courses);
+    });
+
+    res.json(courses);
 }
 
 function getCourseByID(req, res){}
