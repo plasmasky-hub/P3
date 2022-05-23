@@ -3,10 +3,7 @@ const Course = require('../models/course');
 async function getAllCourses(req, res){
     // db.courses.find()
     console.log('Finding courses...');
-    const courses = await Course.find().then(function (err, courses) {
-        if (err) return console.error(err);
-        console.log(courses);
-    });
+    const courses = await Course.find();
 
     res.json(courses);
 }
